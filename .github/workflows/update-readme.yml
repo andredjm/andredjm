@@ -1,4 +1,4 @@
-name: Weekly insight — Claude agent
+name: Weekly insight — AI agent
 
 on:
   schedule:
@@ -19,26 +19,30 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install Anthropic SDK
-        run: pip install anthropic
+      - name: Install OpenAI SDK
+        run: pip install openai
 
-      - name: Generate insight with Claude
+      - name: Generate insight via GitHub Models
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           python3 << 'PYEOF'
-          import anthropic
+          import os
           import datetime
           import re
+          from openai import OpenAI
 
-          client = anthropic.Anthropic()
+          client = OpenAI(
+              base_url="https://models.inference.ai.azure.com",
+              api_key=os.environ["GITHUB_TOKEN"],
+          )
 
           today = datetime.date.today()
           today_str = today.strftime("%Y-%m-%d")
           next_week_str = (today + datetime.timedelta(days=7)).strftime("%Y-%m-%d")
 
-          message = client.messages.create(
-              model="claude-opus-4-6",
+          response = client.chat.completions.create(
+              model="gpt-4o",
               max_tokens=180,
               messages=[{
                   "role": "user",
@@ -49,36 +53,35 @@ jobs:
           - Builds SaaS products: All Tracking Done (logistics platform), Treinero (personal trainer marketplace), ChatFlow (messaging automation)
           - Also a techno/house/underground DJ
           - Thinks in systems, obsessed with shipping things that work at scale
-          - Uses AI tools (Claude, Gemini, Codex) creatively in his workflow
+          - Uses AI tools creatively in his workflow
 
           Write ONE sharp, original thought (2-4 sentences max) that Andre might be sitting with this week.
-          It could be about: software architecture, product building, the intersection of creativity and engineering, systems thinking, the DJ/engineer duality, or AI workflows.
+          It could be about: software architecture, product building, the intersection of creativity and engineering, systems thinking, the DJ/engineer duality, or AI in product workflows.
 
           Rules:
           - Sound like a real human thought, not a motivational quote
           - Be specific and concrete, not generic
           - No clichés. No "passionate about". No "leverage synergies".
-          - Do NOT wrap in quotes. Return only the raw text.
+          - Return only the raw text, no quotes, no attribution.
           """
               }]
           )
 
-          insight = message.content[0].text.strip()
+          insight = response.choices[0].message.content.strip()
 
           with open("README.md", "r") as f:
               content = f.read()
 
-          new_block = f"""<!-- agent:start -->
-          <!-- Updated by Claude · {today_str} · next: {next_week_str} -->
-
-          ### This week / Esta semana
-
-          > {insight}
-
-          <!-- agent:end -->"""
-
-          # Normalize indentation
-          new_block = "\n".join(line.lstrip() for line in new_block.splitlines())
+          new_block = (
+              f"<!-- agent:start -->\n"
+              f"<!-- Updated by AI agent · {today_str} · next: {next_week_str} -->\n"
+              f"\n"
+              f"### This week / Esta semana\n"
+              f"\n"
+              f"> {insight}\n"
+              f"\n"
+              f"<!-- agent:end -->"
+          )
 
           updated = re.sub(
               r'<!-- agent:start -->.*?<!-- agent:end -->',
@@ -90,13 +93,13 @@ jobs:
           with open("README.md", "w") as f:
               f.write(updated)
 
-          print(f"✓ Insight generated: {insight[:80]}...")
+          print(f"✓ Insight: {insight[:80]}...")
           PYEOF
 
       - name: Commit and push
         run: |
-          git config user.name "claude-agent[bot]"
-          git config user.email "claude-agent@users.noreply.github.com"
+          git config user.name "ai-agent[bot]"
+          git config user.email "ai-agent@users.noreply.github.com"
           git add README.md
           git diff --staged --quiet && echo "No changes" || \
             git commit -m "agent: weekly insight · $(date +%Y-%m-%d)" && git push
