@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 120" width="800" height="120">
+  <defs>
+
+    <!-- Same KHAOS void -->
+    <linearGradient id="khaos-f" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#04000e"/>
+      <stop offset="35%"  stop-color="#0c0022"/>
+      <stop offset="70%"  stop-color="#160038"/>
+      <stop offset="100%" stop-color="#06001a"/>
+    </linearGradient>
+
+    <!-- NYX veils -->
+    <radialGradient id="nyx-fl" cx="5%" cy="50%" r="40%">
+      <stop offset="0%"   stop-color="#220055" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="nyx-fr" cx="95%" cy="50%" r="40%">
+      <stop offset="0%"   stop-color="#180044" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- HEKATE center -->
+    <radialGradient id="hekate-f" cx="50%" cy="30%" r="55%">
+      <stop offset="0%"   stop-color="#5511aa" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Dune night veil: dunes dissolve into the dark -->
+    <linearGradient id="dune-fade-l" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#000000" stop-opacity="1"/>
+      <stop offset="18%"  stop-color="#000000" stop-opacity="0"/>
+      <stop offset="82%"  stop-color="#000000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="1"/>
+    </linearGradient>
+
+    <!-- Dune top fade — dissolve into night sky -->
+    <linearGradient id="dune-sky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#000000" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </linearGradient>
+
+    <style>
+      .sa { animation: sa 3.1s ease-in-out infinite alternate; }
+      .sb { animation: sb 4.8s ease-in-out infinite alternate; }
+      .sc { animation: sc 2.9s ease-in-out infinite alternate; }
+      .sd { animation: sd 5.3s ease-in-out infinite alternate; }
+      .se { animation: se 3.7s ease-in-out infinite alternate; }
+      @keyframes sa { 0%{opacity:.05} 100%{opacity:.85} }
+      @keyframes sb { 0%{opacity:.08} 100%{opacity:.70} }
+      @keyframes sc { 0%{opacity:.03} 100%{opacity:.90} }
+      @keyframes sd { 0%{opacity:.06} 100%{opacity:.65} }
+      @keyframes se { 0%{opacity:.10} 100%{opacity:.80} }
+    </style>
+  </defs>
+
+  <!-- === KHAOS: void sky === -->
+  <rect width="800" height="120" fill="url(#khaos-f)"/>
+
+  <!-- === HEKATE: faint center warmth === -->
+  <ellipse cx="400" cy="30" rx="360" ry="80" fill="url(#hekate-f)"/>
+
+  <!-- === NYX: veils === -->
+  <rect width="800" height="120" fill="url(#nyx-fl)"/>
+  <rect width="800" height="120" fill="url(#nyx-fr)"/>
+
+  <!-- === NYX: a few stars in upper sky === -->
+  <circle class="sc" cx="55"  cy="14" r="1.0" fill="#cc88ff"/>
+  <circle class="sa" cx="142" cy="28" r="0.7" fill="#ffffff"/>
+  <circle class="sb" cx="229" cy="9"  r="1.1" fill="#eeddff"/>
+  <circle class="sd" cx="318" cy="22" r="0.6" fill="#ffffff"/>
+  <circle class="se" cx="407" cy="12" r="0.9" fill="#dd99ff"/>
+  <circle class="sa" cx="496" cy="30" r="0.7" fill="#ffffff"/>
+  <circle class="sc" cx="583" cy="17" r="1.0" fill="#cc88ff"/>
+  <circle class="sb" cx="668" cy="25" r="0.8" fill="#eeddff"/>
+  <circle class="sd" cx="748" cy="11" r="1.1" fill="#ffffff"/>
+
+  <!-- === DUNES: layered white waves passing through night veil === -->
+
+  <!-- Dune layer 1 — farthest, most veiled by night, low opacity -->
+  <path
+    d="M-10 95
+       C 60 70, 140 58, 220 72
+       C 300 86, 370 60, 460 68
+       C 550 76, 630 52, 720 66
+       C 760 72, 790 80, 810 85
+       L 810 120 L -10 120 Z"
+    fill="#e8e0ff"
+    opacity="0.13"
+  />
+
+  <!-- Dune layer 2 — mid distance, partially veiled -->
+  <path
+    d="M-10 100
+       C 50 80, 130 65, 210 80
+       C 290 95, 370 68, 460 78
+       C 550 88, 640 62, 730 76
+       C 765 82, 795 90, 810 94
+       L 810 120 L -10 120 Z"
+    fill="#f0eaff"
+    opacity="0.22"
+  />
+
+  <!-- Dune layer 3 — closer, emerging from darkness -->
+  <path
+    d="M-10 105
+       C 70 88, 155 74, 240 88
+       C 325 102, 400 76, 490 86
+       C 580 96, 660 70, 750 82
+       C 775 87, 800 94, 810 98
+       L 810 120 L -10 120 Z"
+    fill="#f8f4ff"
+    opacity="0.38"
+  />
+
+  <!-- Dune layer 4 — foreground, brightest -->
+  <path
+    d="M-10 110
+       C 80 95, 170 82, 260 96
+       C 350 110, 420 86, 510 94
+       C 600 102, 675 80, 760 90
+       C 782 94, 800 100, 810 104
+       L 810 120 L -10 120 Z"
+    fill="#fdfbff"
+    opacity="0.65"
+  />
+
+  <!-- Dune layer 5 — closest, almost white -->
+  <path
+    d="M-10 114
+       C 90 102, 180 90, 270 104
+       C 360 118, 430 96, 520 103
+       C 610 110, 685 90, 768 100
+       C 788 104, 805 110, 810 113
+       L 810 120 L -10 120 Z"
+    fill="#ffffff"
+    opacity="0.85"
+  />
+
+  <!-- Night veil overlay dissolving dunes at edges -->
+  <rect width="800" height="120" fill="url(#dune-fade-l)"/>
+
+  <!-- Sky-to-dune transition: top of dunes melts into night -->
+  <rect x="0" y="60" width="800" height="40" fill="url(#dune-sky)" opacity="0.35"/>
+
+</svg>

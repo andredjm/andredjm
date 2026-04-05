@@ -1,23 +1,12 @@
 <div align="center">
 
-<br/>
-<br/>
-
-# A &nbsp; N &nbsp; D &nbsp; R &nbsp; E &nbsp;&nbsp;&nbsp; D &nbsp; J &nbsp; M
-
-<br/>
-
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=300&size=15&pause=2500&color=888888&center=true&vCenter=true&width=640&lines=Engineer+by+day.+DJ+by+night.+Always+building+something.;Engenheiro+de+dia.+DJ+de+noite.+Sempre+construindo+algo." alt="Typing SVG" />
-
-<br/>
-
----
+<img src="header.svg" width="100%" alt="Andre DJM" />
 
 <br/>
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-andredjm-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/andredjm)
 [![GitHub](https://img.shields.io/badge/GitHub-andredjm-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/andredjm)
-![Profile views](https://komarev.com/ghpvc/?username=andredjm&style=flat-square&color=555555)
+![Profile views](https://komarev.com/ghpvc/?username=andredjm&style=flat-square&color=6633aa)
 
 <br/>
 
@@ -126,5 +115,7 @@ open      → product-minded teams, interesting problems, new opportunities
 ---
 
 <div align="center">
-<sub>This profile thinks for itself — the <em>This week</em> section is regenerated every Monday by a Claude agent via GitHub Actions.</sub>
+<sub>This profile thinks for itself — the <em>This week</em> section is regenerated every Monday by an AI agent via GitHub Actions.</sub>
+<br/><br/>
+<img src="footer.svg" width="100%" alt="" />
 </div>
