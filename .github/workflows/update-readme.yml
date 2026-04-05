@@ -1,0 +1,102 @@
+name: Weekly insight — Claude agent
+
+on:
+  schedule:
+    - cron: '0 10 * * 1'  # Every Monday at 10am UTC
+  workflow_dispatch:       # Allow manual trigger anytime
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Anthropic SDK
+        run: pip install anthropic
+
+      - name: Generate insight with Claude
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          python3 << 'PYEOF'
+          import anthropic
+          import datetime
+          import re
+
+          client = anthropic.Anthropic()
+
+          today = datetime.date.today()
+          today_str = today.strftime("%Y-%m-%d")
+          next_week_str = (today + datetime.timedelta(days=7)).strftime("%Y-%m-%d")
+
+          message = client.messages.create(
+              model="claude-opus-4-6",
+              max_tokens=180,
+              messages=[{
+                  "role": "user",
+                  "content": """You are writing a weekly insight for Andre DJM's GitHub profile.
+
+          Context about Andre:
+          - Full-stack engineer (NestJS, Next.js, TypeScript, Docker, PostgreSQL, Redis, AWS)
+          - Builds SaaS products: All Tracking Done (logistics platform), Treinero (personal trainer marketplace), ChatFlow (messaging automation)
+          - Also a techno/house/underground DJ
+          - Thinks in systems, obsessed with shipping things that work at scale
+          - Uses AI tools (Claude, Gemini, Codex) creatively in his workflow
+
+          Write ONE sharp, original thought (2-4 sentences max) that Andre might be sitting with this week.
+          It could be about: software architecture, product building, the intersection of creativity and engineering, systems thinking, the DJ/engineer duality, or AI workflows.
+
+          Rules:
+          - Sound like a real human thought, not a motivational quote
+          - Be specific and concrete, not generic
+          - No clichés. No "passionate about". No "leverage synergies".
+          - Do NOT wrap in quotes. Return only the raw text.
+          """
+              }]
+          )
+
+          insight = message.content[0].text.strip()
+
+          with open("README.md", "r") as f:
+              content = f.read()
+
+          new_block = f"""<!-- agent:start -->
+          <!-- Updated by Claude · {today_str} · next: {next_week_str} -->
+
+          ### This week / Esta semana
+
+          > {insight}
+
+          <!-- agent:end -->"""
+
+          # Normalize indentation
+          new_block = "\n".join(line.lstrip() for line in new_block.splitlines())
+
+          updated = re.sub(
+              r'<!-- agent:start -->.*?<!-- agent:end -->',
+              new_block,
+              content,
+              flags=re.DOTALL
+          )
+
+          with open("README.md", "w") as f:
+              f.write(updated)
+
+          print(f"✓ Insight generated: {insight[:80]}...")
+          PYEOF
+
+      - name: Commit and push
+        run: |
+          git config user.name "claude-agent[bot]"
+          git config user.email "claude-agent@users.noreply.github.com"
+          git add README.md
+          git diff --staged --quiet && echo "No changes" || \
+            git commit -m "agent: weekly insight · $(date +%Y-%m-%d)" && git push

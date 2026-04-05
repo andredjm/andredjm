@@ -1,16 +1,27 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d0d0d,50:1a1a2e,100:16213e&height=130&section=header&text=Andre%20DJM&fontSize=42&fontColor=ffffff&fontAlignY=72&animation=fadeIn&desc=Engineer%20·%20Builder%20·%20DJ&descSize=16&descAlignY=88&descAlign=50" width="100%" />
+<br/>
+<br/>
+
+# A &nbsp; N &nbsp; D &nbsp; R &nbsp; E &nbsp;&nbsp;&nbsp; D &nbsp; J &nbsp; M
+
+<br/>
+
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=300&size=15&pause=2500&color=888888&center=true&vCenter=true&width=640&lines=Engineer+by+day.+DJ+by+night.+Always+building+something.;Engenheiro+de+dia.+DJ+de+noite.+Sempre+construindo+algo." alt="Typing SVG" />
+
+<br/>
+
+---
 
 <br/>
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-andredjm-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/andredjm)
 [![GitHub](https://img.shields.io/badge/GitHub-andredjm-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/andredjm)
-![Profile views](https://komarev.com/ghpvc/?username=andredjm&style=flat-square&color=1a1a2e)
+![Profile views](https://komarev.com/ghpvc/?username=andredjm&style=flat-square&color=555555)
+
+<br/>
 
 </div>
-
----
 
 ### About / Sobre
 
@@ -75,6 +86,17 @@ Fora da tela, vivo no underground — techno, house e sons eletrônicos profundo
 
 ---
 
+<!-- agent:start -->
+<!-- Updated by Claude · 2026-04-05 · next: 2026-04-12 -->
+
+### This week / Esta semana
+
+> The hardest part of building at scale isn't the architecture — it's resisting the urge to over-engineer before you've earned the complexity.
+
+<!-- agent:end -->
+
+---
+
 ### GitHub Stats
 
 <div align="center">
@@ -104,7 +126,5 @@ open      → product-minded teams, interesting problems, new opportunities
 ---
 
 <div align="center">
-
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:16213e,50:1a1a2e,100:0d0d0d&height=80&section=footer" width="100%" />
-
+<sub>This profile thinks for itself — the <em>This week</em> section is regenerated every Monday by a Claude agent via GitHub Actions.</sub>
 </div>
